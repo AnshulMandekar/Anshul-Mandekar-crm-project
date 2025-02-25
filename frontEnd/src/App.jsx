@@ -6,6 +6,7 @@ import AdminDashBoard from "./components/AdminDashBoard";
 import VisiterRegistration from "./components/VisiterRegistration";
 import BrokerRegistration from "./components/BrokerRegistration";
 import PropertyListing from "./components/PropertyListing";
+import NewProjectForm from "./components/NewProjectForm";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/VisiterRegistration" element={<VisiterRegistration />} />
         <Route path="/BrokerRegistration" element={<BrokerRegistration />} />
         <Route path="/propertylisting" element={<PropertyListing />} />
+        <Route path="/newproject" element={<NewProjectForm />} />
       </Routes>
     </Router>
   );
