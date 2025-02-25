@@ -57,6 +57,13 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 
 // Register Route
+// Strong Password Validation Function
+function isPasswordStrong(password) {
+    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return strongPasswordRegex.test(password);
+}
+
+// Register Route
 app.post('/api/signup', async (req, res) => {
     const {
         firstname,
@@ -74,8 +81,9 @@ app.post('/api/signup', async (req, res) => {
         terms,
     } = req.body;
 
-    if (!password || password.length < 6) {
-        return res.status(400).json({ error: 'Password must be at least 6 characters' });
+    // Check Password Strength
+    if (!isPasswordStrong(password)) {
+        return res.status(400).json({ error: 'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.' });
     }
 
     try {
@@ -84,7 +92,7 @@ app.post('/api/signup', async (req, res) => {
             return res.status(400).json({ error: 'Email already exists' });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 12); // Increase salt rounds for better security
 
         const user = new User({
             firstname,
@@ -109,6 +117,7 @@ app.post('/api/signup', async (req, res) => {
         res.status(500).json({ error: 'Error registering user' });
     }
 });
+
 
 // Generate OTP
 const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString();
