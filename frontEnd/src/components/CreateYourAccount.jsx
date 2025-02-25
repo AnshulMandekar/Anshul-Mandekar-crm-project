@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const SignupForm = () => {
+const CreateYourAccount = () => {
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
@@ -59,16 +59,14 @@ const SignupForm = () => {
         try {
             const response = await fetch('http://localhost:8000/api/signup', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
             });
 
             const data = await response.json();
             if (response.ok) {
                 alert('Signup successful!');
-                navigate('/login'); // Redirect to login page
+                navigate('/select-user'); // Redirect to user selection page
             } else {
                 alert(data.error || 'Error signing up');
             }
@@ -167,4 +165,4 @@ const SignupForm = () => {
     );
 };
 
-export default SignupForm;
+export default CreateYourAccount;

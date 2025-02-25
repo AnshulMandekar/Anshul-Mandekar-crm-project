@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
+import SelectUserType from "./components/SelectUserType";
 import CreateYourAccount from "./components/CreateYourAccount";
 import AdminDashBoard from "./components/AdminDashBoard";
 import VisiterRegistration from "./components/VisiterRegistration";
@@ -10,7 +11,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/select-user" element={<SelectUserType />} />
         <Route path="/signup" element={<CreateYourAccount />} />
         <Route path="/AdminDashBoard" element={<AdminDashBoard />} />
         <Route path="/VisiterRegistration" element={<VisiterRegistration />} />

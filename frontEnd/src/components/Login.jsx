@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginForm from "./loginin_form/LoginForm";
 
 const Login = () => {
@@ -8,7 +9,8 @@ const Login = () => {
   const [timerActive, setTimerActive] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
+  const navigate = useNavigate();
 
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -16,42 +18,28 @@ const Login = () => {
   };
 
   const handleGenerateOtp = async () => {
-
-    if (!email && !password) 
-    {
+    if (!email || !password) {
       alert("Please enter both email and password.");
       return;
-    } 
-    else if (!email) 
-    {
-      alert("Please enter your email.");
-      return;
-    } 
-    else if (!validateEmail(email))
-    {
+    } else if (!validateEmail(email)) {
       alert("Invalid email format. Please enter a valid email.");
-      return;
-    }
-    else if (!password) 
-    {
-      alert("Please enter your password.");
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:8000/api/generate-otp', {
-        method: 'POST',
+      const response = await fetch("http://localhost:8000/api/generate-otp", {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         setIsOtpSectionVisible(true);
-        setOtp('');
+        setOtp("");
         startTimer();
-      } else if (response.status === 401) { 
+      } else if (response.status === 401) {
         alert("Incorrect password. Please try again.");
       } else {
         alert(data.message || "Failed to send OTP. Please try again.");
@@ -60,7 +48,6 @@ const Login = () => {
       alert("An error occurred. Please try again.");
     }
   };
-  
 
   const startTimer = () => {
     setTimeLeft(300);
@@ -77,11 +64,8 @@ const Login = () => {
     }, 1000);
   };
 
-  const handleLogin = async () => 
-  {
-    try 
-    {
-      // Verify the OTP after successful login validation
+  const handleLogin = async () => {
+    try {
       const otpResponse = await fetch("http://localhost:8000/api/verify-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -90,14 +74,14 @@ const Login = () => {
 
       if (otpResponse.ok) {
         alert("Login successful!");
+        navigate("/dashboard"); // Redirect to dashboard or home page
       } else {
         alert("Invalid OTP.");
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error("Login error:", error);
+      alert("An error occurred during login.");
     }
-
   };
 
   return (

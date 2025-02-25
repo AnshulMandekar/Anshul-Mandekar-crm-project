@@ -1,6 +1,6 @@
 import React from "react";
 import { User, Lock } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = ({
   handleGenerateOtp,
@@ -15,6 +15,8 @@ const LoginForm = ({
   setPassword,
   handleLogin,
 }) => {
+  const navigate = useNavigate(); // Added useNavigate for navigation
+
   return (
     <div className="max-w-lg w-full space-y-6 bg-gray-50 p-12 rounded-xl shadow-xl text-gray-900">
       <div className="text-center">
@@ -105,9 +107,12 @@ const LoginForm = ({
         <div className="mt-4 text-center">
           <p className="text-gray-600">
             Don't have an account?
-            <Link to="/signup" className="text-blue-500 hover:text-blue-700 font-medium ml-1">
+            <span
+              onClick={() => navigate("/select-user")}
+              className="text-blue-500 hover:text-blue-700 font-medium ml-1 cursor-pointer"
+            >
               Create a new account
-            </Link>
+            </span>
           </p>
         </div>
       </form>
