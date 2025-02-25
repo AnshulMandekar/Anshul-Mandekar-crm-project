@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles below */
+.form-input {
+  @apply mt-1 block w-full h-10;
+  opacity: 1;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+  border-radius: 0.375rem;
+}
+
+.form-input:focus {
+  @apply ring-2 ring-blue-500 border-blue-500 outline-none;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.form-button {
+  @apply w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+}
+
+.form-radio {
+  @apply text-blue-600 focus:ring-blue-500;
+}
+
+.form-select {
+  @apply mt-1 block w-full h-10;
+  opacity: 1;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  border: 1px solid #D1D5DB;
+  border-radius: 0.375rem;
+}
+
+.form-select:focus {
+  @apply ring-2 ring-blue-500 border-blue-500 outline-none;
+}
+
+.form-container {
+  @apply min-h-screen flex flex-col bg-gray-50;
+}
+
+.form-card {
+  @apply bg-white shadow rounded-lg;
+}
+
+.form-section {
+  @apply space-y-6;
+}
+
+.form-grid {
+  @apply grid grid-cols-1 gap-6 sm:grid-cols-2;
+}
