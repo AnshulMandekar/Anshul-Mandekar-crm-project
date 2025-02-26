@@ -7,6 +7,7 @@ import VisiterRegistration from "./components/VisiterRegistration";
 import BrokerRegistration from "./components/BrokerRegistration";
 import PropertyListing from "./components/PropertyListing";
 import NewProjectForm from "./components/NewProjectForm";
+import LeadMangment from "./components/LeadMangement";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/BrokerRegistration" element={<BrokerRegistration />} />
         <Route path="/propertylisting" element={<PropertyListing />} />
         <Route path="/newproject" element={<NewProjectForm />} />
+        <Route path="/leadmangment" element={<LeadMangment />} />
       </Routes>
     </Router>
   );
