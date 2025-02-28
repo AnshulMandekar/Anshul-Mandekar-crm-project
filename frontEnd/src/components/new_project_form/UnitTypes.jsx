@@ -1,17 +1,27 @@
 import React from 'react';
 
-function UnitTypes() {
-  const units = ['1 BHK', '2 BHK', '3 BHK', '4 BHK'];
+function UnitTypes({ selectedUnit, onChange }) {
+  const units = ['Studio', '1BHK', '1.5 BHK', '2BHK', '2.5 BHK', '3BHK', '4 BHK', 'Row House', 'Villa'];
 
   return (
-    <div className="sm:col-span-6">
-      <label className="block text-sm font-medium text-gray-700">Unit Types</label>
+    <div className="mb-4">
+      <label className="block text-sm font-medium text-gray-700">
+        Unit Type <span className="text-red-500">*</span>
+      </label>
       <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
         {units.map((unit) => (
-          <label key={unit} className="relative flex items-center justify-center p-4 border rounded-lg cursor-pointer hover:border-custom">
-            <input type="checkbox" className="absolute h-4 w-4 top-2 right-2" />
-            <span className="text-sm">{unit}</span>
-          </label>
+          <button
+            key={unit}
+            type="button"
+            onClick={() => onChange(unit)}
+            className={`p-2 border rounded-md text-sm ${
+              selectedUnit === unit 
+                ? 'border-blue-500 bg-blue-50 text-blue-700'
+                : 'border-gray-300 hover:border-blue-500'
+            }`}
+          >
+            {unit}
+          </button>
         ))}
       </div>
     </div>
