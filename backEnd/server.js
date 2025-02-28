@@ -35,8 +35,64 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// User Schema
-const UserSchema = new mongoose.Schema({
+// Project schema
+
+
+const projectSchema = new mongoose.Schema({
+  typeOfProject: { 
+    type: String, 
+    enum: ['Residential', 'Commercial', 'Plots', 'Villa', 'Residential / Commercial', 'IT/ITES', 'Warehouse'],
+    required: true
+  },
+  areaOfLand: { type: String, default: '' },
+  geoTag: { type: String, default: '' },
+  typeOfUnits: { 
+    type: String, 
+    enum: ['Studio', '1BHK', '1.5 BHK', '2BHK', '2.5 BHK', '3BHK', '4 BHK', 'Row House', 'Villa'],
+    required: true
+  },
+  address: { type: String, required: true },
+  numberOfBuildings: { type: Number, default: 0 },
+  numberOfPhases: { type: Number, default: 0 },
+  amenities: { type: [String], default: [] },
+  typeOfBuilding: { type: String, default: '' },
+  flatsPerFloor: { type: Number, default: 0 },
+  paymentSchedule: { type: String, default: '' },
+  demandLetter: { type: String, default: '' },
+  currentASRRate: { type: Number, default: 0 },
+  RERANumber: { type: String, default: '' },
+  bankDetails: {
+    approval: { type: String, default: '' },
+    IOD: { type: String, default: '' },
+    CC: { type: String, default: '' },
+    NA: { type: String, default: '' },
+    purchaseDeed: { type: String, default: '' },
+    titleDocument: { type: String, default: '' },
+    reraCertificate: { type: String, default: '' },
+    approvedPlan: { type: String, default: '' },
+    NOCFire: { type: String, default: '' },
+    tree: { type: String, default: '' },
+    PWD: { type: String, default: '' },
+    environment: { type: String, default: '' },
+    airportAuthority: { type: String, default: '' },
+    traffic: { type: String, default: '' },
+    projectBrochure: { type: String, default: '' }
+  },
+  otherCharges: {
+    parking: { type: Number, default: 0 },
+    societyFormation: { type: Number, default: 0 },
+    developmentCharge: { type: Number, default: 0 },
+    legalCharge: { type: Number, default: 0 },
+    maintenancePerSqFt: { type: Number, default: 0 },
+    infrastructureCharge: { type: Number, default: 0 }
+  }
+});
+
+// Creating a separate collection for projects
+const Project = mongoose.model("Project", projectSchema);
+
+// Updating User Schema to reference projects
+const userSchema = new mongoose.Schema({
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
     email: { type: String, unique: true, required: true },
@@ -44,7 +100,7 @@ const UserSchema = new mongoose.Schema({
     companyType: { type: String, required: true },
     gst: { type: String },
     PanCard: { type: String },
-    street: { type: String, required: true },  // Ensure required
+    street: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
     pincode: { type: String, required: true },
@@ -52,9 +108,13 @@ const UserSchema = new mongoose.Schema({
     terms: { type: Boolean, required: true },
     otp: String,
     otpExpiry: Date,
+    projects: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }], // Reference projects by ID
 });
 
-const User = mongoose.model('User', UserSchema);
+const User = mongoose.model("User", userSchema);
+
+module.exports = { User, Project };
+
 
 // Register Route
 // Strong Password Validation Function
