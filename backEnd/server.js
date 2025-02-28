@@ -9,7 +9,7 @@ const nodemailer = require('nodemailer');
 const app = express();
 const PORT = 8000;
 const JWT_SECRET = 'your_jwt_secret';
-const MONGO_URI = 'mongodb://localhost:27017/auth_demo';
+const MONGO_URI = 'mongodb://localhost:27017/crm_project';
 
 // Middleware
 app.use(cors());
@@ -37,19 +37,19 @@ const transporter = nodemailer.createTransport({
 
 // User Schema
 const UserSchema = new mongoose.Schema({
-    firstname: String,
-    lastname: String,
+    firstname: { type: String, required: true },
+    lastname: { type: String, required: true },
     email: { type: String, unique: true, required: true },
-    phone: String,
-    companyType: String,
-    gst: String,
-    PanCard: String,
-    street1: String,
-    city1: String,
-    state1: String,
-    pincode1: String,
+    phone: { type: String, required: true },
+    companyType: { type: String, required: true },
+    gst: { type: String },
+    PanCard: { type: String },
+    street: { type: String, required: true },  // Ensure required
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    pincode: { type: String, required: true },
     password: { type: String, required: true },
-    terms: Boolean,
+    terms: { type: Boolean, required: true },
     otp: String,
     otpExpiry: Date,
 });
@@ -58,10 +58,10 @@ const User = mongoose.model('User', UserSchema);
 
 // Register Route
 // Strong Password Validation Function
-function isPasswordStrong(password) {
-    const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return strongPasswordRegex.test(password);
-}
+// function isPasswordStrong(password) {
+//     const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+//     return strongPasswordRegex.test(password);
+// }
 
 // Register Route
 app.post('/api/signup', async (req, res) => {
@@ -73,18 +73,18 @@ app.post('/api/signup', async (req, res) => {
         companyType,
         gst,
         PanCard,
-        street1,
-        city1,
-        state1,
-        pincode1,
+        street,
+        city,
+        state,
+        pincode,
         password,
         terms,
     } = req.body;
 
     // Check Password Strength
-    if (!isPasswordStrong(password)) {
-        return res.status(400).json({ error: 'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.' });
-    }
+    // if (!isPasswordStrong(password)) {
+    //     return res.status(400).json({ error: 'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character.' });
+    // }
 
     try {
         const existingUser = await User.findOne({ email });
@@ -102,10 +102,10 @@ app.post('/api/signup', async (req, res) => {
             companyType,
             gst,
             PanCard,
-            street1,
-            city1,
-            state1,
-            pincode1,
+            street,
+            city,
+            state,
+            pincode,
             password: hashedPassword,
             terms,
         });

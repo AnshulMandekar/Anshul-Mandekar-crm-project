@@ -66,7 +66,7 @@ const CreateYourAccount = () => {
             const data = await response.json();
             if (response.ok) {
                 alert('Signup successful!');
-                navigate('/select-user'); // Redirect to user selection page
+                navigate('/AdminDashBoard'); // Redirect to Admin Dashboard
             } else {
                 alert(data.error || 'Error signing up');
             }

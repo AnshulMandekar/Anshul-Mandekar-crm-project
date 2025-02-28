@@ -74,7 +74,7 @@ const Login = () => {
 
       if (otpResponse.ok) {
         alert("Login successful!");
-        navigate("/dashboard"); // Redirect to dashboard or home page
+        navigate("/AdminDashBoard"); // Redirect to dashboard or home page
       } else {
         alert("Invalid OTP.");
       }
