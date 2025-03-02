@@ -113,9 +113,9 @@ exports.verifyOtp = async (req, res) => {
 
     await User.updateOne({ email }, { otp: null, otpExpiry: null });
 
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1d" });
 
-    res.status(200).json({ message: "Login successful", token });
+    res.status(200).json({ message: "Login successful", token, user: { id: user._id, email: user.email } });
   } catch (error) {
     console.error("OTP Verification Error:", error);
     res.status(500).json({ error: "Error verifying OTP" });
