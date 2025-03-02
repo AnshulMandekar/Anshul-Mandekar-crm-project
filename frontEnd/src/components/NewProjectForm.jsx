@@ -150,6 +150,8 @@ function NewProjectForm() {
             <InputField label="Flats per Floor *" name="flatsPerFloor" type="number" required />
           </div>
 
+{/* uploading file */}
+
           {/* Documents Upload */}
           <Documents onDocumentsChange={(field, file) => {
             setProjectData(prev => ({
@@ -157,6 +159,8 @@ function NewProjectForm() {
               bankDetails: { ...prev.bankDetails, [field]: file }
             }));
           }} />
+
+
 
           {/* Other Fields */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">

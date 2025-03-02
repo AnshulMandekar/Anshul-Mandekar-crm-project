@@ -57,10 +57,13 @@ const CreateYourAccount = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8000/api/signup', {
+            // Remove confirmPassword before sending to the server
+            const { confirmPassword, ...dataToSend } = formData;
+            
+            const response = await fetch('http://localhost:8000/api/auth/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(dataToSend),
             });
 
             const data = await response.json();
@@ -71,7 +74,8 @@ const CreateYourAccount = () => {
                 alert(data.error || 'Error signing up');
             }
         } catch (error) {
-            alert('Error signing up');
+            console.error('Signup error:', error);
+            alert('Error signing up. Please try again later.');
         }
     };
 
