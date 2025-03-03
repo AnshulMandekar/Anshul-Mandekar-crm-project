@@ -6,7 +6,7 @@ import AdminDashBoard from "./components/AdminDashBoard";
 import VisiterRegistration from "./components/VisiterRegistration";
 import BrokerRegistration from "./components/BrokerRegistration";
 import PropertyListing from "./components/PropertyListing";
-import NewProjectForm from "./components/NewProjectForm";
+import NewProjectForm from "./components/new_project_form/ProjectForm";
 import LeadMangment from "./components/LeadMangement";
 
 function App() {
