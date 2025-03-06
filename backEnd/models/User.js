@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
     otp: String,
     otpExpiry: Date,
     projects: [{ type: mongoose.Schema.Types.ObjectId, ref: "Project" }], // Reference projects by ID
+    leads : [{ type: mongoose.Schema.Types.ObjectId, ref: "lead" }],
 });
 
 module.exports = mongoose.model("User", userSchema);

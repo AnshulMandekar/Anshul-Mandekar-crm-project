@@ -1,24 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const projectController = require('../controllers/projectController');
-const authMiddleware = require('../middleware/auth');
+const { 
+  getAllProjects, 
+  getProject, 
+  createProject, 
+  updateProject, 
+  deleteProject 
+} = require('../controllers/projectController');
 
-// Apply auth middleware to all project routes
-router.use(authMiddleware);
+// Project routes
+router.route('/')
+  .get(getAllProjects)
+  .post(createProject);
 
-// Get all projects for a user
-router.get('/', projectController.getProjects);
+router.route('/:id')
+  .get(getProject)
+  .put(updateProject)
+  .delete(deleteProject);
 
-// Create a new project
-router.post('/', projectController.createProject);
-
-// Get a specific project
-router.get('/:projectId', projectController.getProject);
-
-// Update a project
-router.put('/:projectId', projectController.updateProject);
-
-// Delete a project
-router.delete('/:projectId', projectController.deleteProject);
+router.route('/create')
+  .post(createProject);
 
 module.exports = router;

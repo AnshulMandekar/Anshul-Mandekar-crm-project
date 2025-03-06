@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
-import SelectUserType from "./components/SelectUserType";
+import SelectUserType from "./components/selectusertype";
 import CreateYourAccount from "./components/CreateYourAccount";
 import AdminDashBoard from "./components/AdminDashBoard";
 import VisiterRegistration from "./components/VisiterRegistration";
@@ -10,6 +10,7 @@ import NewProjectForm from "./components/NewProjectForm";
 import LeadMangment from "./components/LeadMangement";
 import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRoute
 import LeadRegistraion from "./components/LeadRegistration";
+import SampleProject from "./components/SampleProject";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/newproject" element={<NewProjectForm />} />
           <Route path="/leadmangment" element={<LeadMangment />} />
           <Route path="/leadregistration" element={<LeadRegistraion />} />
+          <Route path="/SampleProject" element={<SampleProject />} />
         </Route>
       </Routes>
     </Router>
