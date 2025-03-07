@@ -6,7 +6,6 @@ import AdminDashBoard from "./components/AdminDashBoard";
 import VisiterRegistration from "./components/VisiterRegistration";
 import BrokerRegistration from "./components/BrokerRegistration";
 import PropertyListing from "./components/PropertyListing";
-import NewProjectForm from "./components/NewProjectForm";
 import LeadMangment from "./components/LeadMangement";
 import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRoute
 import LeadRegistraion from "./components/LeadRegistration";
@@ -27,12 +26,11 @@ function App() {
           <Route path="/VisiterRegistration" element={<VisiterRegistration />} />
           <Route path="/BrokerRegistration" element={<BrokerRegistration />} />
           <Route path="/propertylisting" element={<PropertyListing />} />
-          <Route path="/newproject" element={<NewProjectForm />} />
           <Route path="/leadmangment" element={<LeadMangment />} />
           <Route path="/leadregistration" element={<LeadRegistraion />} />
           <Route path="/SampleProject" element={<SampleProject />} />
         </Route>
-      </Routes>
+      </Routes>w
     </Router>
   );
 }
