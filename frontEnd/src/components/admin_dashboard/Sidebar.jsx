@@ -55,7 +55,11 @@ const Sidebar = () => {
   return (
     <aside className="w-64 bg-white border-r border-gray-200">
       <div className="p-6">
-        <img src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo" className="h-8"/>
+          <img
+            className="h-25 w-auto"
+            src="./src/assets/logo.jpg"
+            alt="Logo"
+          />
       </div>
       <nav className="mt-6">
         <button onClick={() => navigate("/dashboard")} className="flex items-center px-6 py-3 text-sm font-medium text-custom bg-gray-50 w-full text-left">

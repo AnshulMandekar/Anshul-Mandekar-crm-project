@@ -16,8 +16,8 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex items-center space-x-3 cursor-pointer" onClick={() => navigate("/")}>
           <img
-            className="h-10 w-auto"
-            src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png"
+            className="h-15 w-auto"
+            src="./src/assets/logo.jpg"
             alt="Logo"
           />
           <span className="text-xl font-bold text-gray-800">RealEstate</span>
@@ -28,7 +28,7 @@ const Navbar = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => navigate("/newproject")}
+            onClick={() => navigate("/SampleProject")}
             className="bg-green-500 text-white px-5 py-2 rounded-lg shadow-md hover:bg-green-600 transition-all"
           >
             Add Property

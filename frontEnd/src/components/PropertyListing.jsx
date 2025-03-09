@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./property_listing/Navbar";
 import PropertyCard from "./property_listing/PropertyCard";
-import Footer from "./property_listing/Footer";
+// import Footer from "./property_listing/Footer";
 
 const properties = [
   {
@@ -138,7 +138,6 @@ function App() {
         </div>
       </main>
 
-      <Footer />
     </div>
   );
 }

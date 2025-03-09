@@ -83,7 +83,7 @@ const CreateYourAccount = () => {
         <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-gray-100 to-gray-300 p-4">
             <div className="w-full max-w-4xl bg-white shadow-lg rounded-lg p-8 lg:p-12 border border-gray-200">
                 <div className="text-center mb-6">
-                    <img className="h-14 mx-auto" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo" />
+                    <img className="h-20 mx-auto" src="./src/assets/logo.jpg" alt="Logo" />
                     <h2 className="text-3xl font-bold text-gray-900 mt-4">Create Your Account</h2>
                     <p className="text-gray-600 mt-1">Join us to access exclusive features and benefits</p>
                 </div>

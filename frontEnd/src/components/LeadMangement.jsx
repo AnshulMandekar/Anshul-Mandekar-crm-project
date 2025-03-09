@@ -42,7 +42,7 @@ const App = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className="flex items-center justify-between py-6">
           <div className="flex items-center">
-            <img src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo" className="h-8 w-auto" />
+            <img src="./src/assets/logo.jpg" alt="Logo" className="h-15 w-auto" />
             <h1 className="ml-4 text-xl font-semibold text-gray-900">Lead Management Dashboard</h1>
           </div>
           <div className="flex items-center space-x-4">
